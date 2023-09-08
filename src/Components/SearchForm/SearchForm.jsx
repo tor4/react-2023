@@ -20,7 +20,7 @@ export function SearchForm({ query, onSearch }) {
         placeholder="Search"
         onChange={(e) => setSearchQuery(e.target.value)}
       />
-      <button type="submimt" className="btn">
+      <button type="submit" data-cy="search-form-subnit" className="btn">
         Search
       </button>
     </form>

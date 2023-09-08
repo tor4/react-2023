@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function App() {
   const [selected, setSelected] = useState("Comedy");
+  const [query, setQuery] = useState('');
   const genres = ["All", "Documentary", "Comedy", "Horror", "Crime"];
 
   return (
@@ -13,7 +14,8 @@ export default function App() {
       <Counter count="5" />
 
       <h2>Search form</h2>
-      <SearchForm query="test query" onSearch={(e) => alert(e)} />
+      <SearchForm query={query} onSearch={(e) => setQuery(e)} />
+      <span data-cy="requested-query">Requested query: {query}</span>
 
       <h2>Genre select</h2>
       <GenreSelect
