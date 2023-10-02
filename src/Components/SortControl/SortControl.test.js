@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import { SortControl } from './SortControl';
 import { userEvent } from "@storybook/testing-library";
+import { SortControl } from './SortControl';
 
 describe('SortControl component', () => {
   it('should select Release date by default', () => {

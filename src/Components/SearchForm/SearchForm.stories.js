@@ -1,6 +1,6 @@
-import {SearchForm} from './SearchForm';
 import { userEvent, waitFor, within } from '@storybook/testing-library';
 import { expect } from '@storybook/jest';
+import { SearchForm } from './SearchForm';
 import '../../index.css';
 
 export default {
@@ -8,11 +8,8 @@ export default {
     tags: ['autodocs'],
 };
 
-export const Default = {
-};
-
 export const SubmitOnButtonClick = {
-    play: async ({args, canvasElement, step}) => {
+    play: async ({ args, canvasElement, step }) => {
         const canvas = within(canvasElement);
 
         await step('Enter query', async () => {

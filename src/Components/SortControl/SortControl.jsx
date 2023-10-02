@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './SortControl.css';
-import { useState } from 'react';
 
 export function SortControl({ selected, onChange }) {
   const defaultSelected = 'releaseDate';

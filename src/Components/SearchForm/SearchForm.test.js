@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { SearchForm } from "./SearchForm";
 import userEvent from "@testing-library/user-event";
+import { SearchForm } from "./SearchForm";
 
 describe('SearchForm component', () => {
     it('should render input with value provided in props', () => {

@@ -1,5 +1,6 @@
-import "./GenreSelect.css";
 import PropTypes from 'prop-types';
+import "./GenreSelect.css";
+
 
 export function GenreSelect({ genres, selected, onSelect }) {
     const listItems = genres.map((genre, i) => (

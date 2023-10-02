@@ -45,6 +45,13 @@ select {
 
 :root {
   --main-color: rgb(3, 155, 229);
+  --text-color: #fff;
+  --secondary-color: #f65261;
+
+  --small-text: 14px;
+  --medium-text: 15px;
+  --large-text: 20px;
+  --xl-text: 34px;
 }
 
 .btn {

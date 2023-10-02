@@ -34,11 +34,11 @@
     padding: 3px 5px;
     border: 1px solid #979797;
     border-radius: 4px;
-    font-size: 14px;
+    font-size: var(--small-text);
 }
 
 .movie-tile p {
-    font-size: 14px;
+    font-size: var(--small-text);
     opacity: 0.5;
 }
 
@@ -78,17 +78,24 @@
     padding-bottom: 5px;
 }
 
+.context-menu button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
 .context-menu .menu .close {
     text-align: end;
     padding-right: 5px;
 }
 
 .context-menu .menu .option {
-    font-size: 14px;
+    font-size: var(--small-text);
     font-weight: 400;
     padding: 5px 23px;
 }
 
 .context-menu .menu .option:hover {
-    background-color: #f65261;
+    background-color: var(--secondary-color);
 }

@@ -1,5 +1,5 @@
 .sort-control {
-  font-size: 14px;
+  font-size: var(--small-text);
   font-weight: 400;
   letter-spacing: 0.89px;
   display: flex;
@@ -24,14 +24,14 @@
   content: "";
   width: 0.6em;
   height: 0.4em;
-  background-color: #F65261;
+  background-color: var(--secondary-color);
   clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   justify-self: end;
 }
 
 .sort-control .custom-select select {
   text-transform: uppercase;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .sort-control .custom-select select,

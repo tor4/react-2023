@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { NO_IMAGE_URL } from '../../Utils/constants';
 import './MovieTile.css';
-import { useState } from 'react';
 
 export function MovieTile({ imageUrl, name, releaseYear, genres, onSelect, onEdit, onDelete }) {
     const [menuOpened, setMenuOpened] = useState(false);
@@ -20,15 +20,15 @@ export function MovieTile({ imageUrl, name, releaseYear, genres, onSelect, onEdi
         <article className='movie-tile' onClick={() => onSelect(name)}>
             <div className={`context-menu ${menuOpened && 'opened'}`} onClick={openMenu}>
                 <div className='menu'>
-                    <span className='close' onClick={closeMenu}>x</span>
-                    <span className='option' onClick={(e) => {
+                    <button type="button" className='close' onClick={closeMenu}>x</button>
+                    <button className='option' onClick={(e) => {
                         e.stopPropagation();
                         onEdit(name);
-                    }}>Edit</span>
-                    <span className='option' onClick={(e) => {
+                    }}>Edit</button>
+                    <button className='option' onClick={(e) => {
                         e.stopPropagation();
                         onDelete(name);
-                    }}>Delete</span>
+                    }}>Delete</button>
                 </div>
             </div>
             <img src={imageUrl || NO_IMAGE_URL} alt={name} />
