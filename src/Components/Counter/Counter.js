@@ -1,9 +1,10 @@
 import React, { createElement } from "react";
+import PropTypes from 'prop-types';
 
 export class Counter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { count: props.count || 0 };
+    this.state = { count: props.count };
   }
 
   decrease() {
@@ -19,7 +20,7 @@ export class Counter extends React.Component {
   render() {
     return createElement(
       "div",
-      {},
+      { className: "counter" },
       createElement(
         "button",
         {
@@ -42,3 +43,11 @@ export class Counter extends React.Component {
     );
   }
 }
+
+Counter.propTypes = {
+  count: PropTypes.number,
+};
+
+Counter.defaultProps = {
+  count: 0,
+};

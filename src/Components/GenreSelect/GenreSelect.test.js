@@ -4,8 +4,8 @@ import { GenreSelect } from "./GenreSelect";
 describe('GenreSelect component', () => {
     const genres = ['genre_1', 'genre_2', 'genre_3'];
 
-    it('should render all genres passes in props', () => {    
-        render(<GenreSelect genres={genres}/>);
+    it('should render all genres passes in props', () => {
+        render(<GenreSelect genres={genres} />);
 
         const items = screen.getAllByRole('button');
 
@@ -14,7 +14,7 @@ describe('GenreSelect component', () => {
 
     it('should highlight selected genre', () => {
         const selected = 'genre_3';
-        render(<GenreSelect genres={genres} selected={selected}/>);
+        render(<GenreSelect genres={genres} selected={selected} />);
 
         const selectedGenre = screen.getByText(selected);
 
@@ -25,7 +25,7 @@ describe('GenreSelect component', () => {
         const onSelect = jest.fn();
         const selected = 'genre_2';
 
-        render(<GenreSelect genres={genres} onSelect={onSelect}/>);
+        render(<GenreSelect genres={genres} onSelect={onSelect} />);
 
         const genreButton = screen.getByText(selected);
         fireEvent.click(genreButton);

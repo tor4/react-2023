@@ -1,10 +1,10 @@
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 export function SearchForm({ query, onSearch }) {
   const [searchQuery, setSearchQuery] = useState(query || "");
 
   function handleSearch(e) {
-    debugger;
     e.preventDefault();
     onSearch(searchQuery);
   }
@@ -27,3 +27,7 @@ export function SearchForm({ query, onSearch }) {
   );
 }
 
+SearchForm.propTypes = {
+  query: PropTypes.string,
+  onSearch: PropTypes.func,
+}

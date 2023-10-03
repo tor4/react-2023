@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import "./GenreSelect.css";
+
 
 export function GenreSelect({ genres, selected, onSelect }) {
     const listItems = genres.map((genre, i) => (
@@ -13,4 +15,9 @@ export function GenreSelect({ genres, selected, onSelect }) {
     ));
     return <ul className="GenreSelect">{listItems}</ul>;
 }
-  
+
+GenreSelect.propTypes = {
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    selected: PropTypes.string,
+    onSelect: PropTypes.func,
+}

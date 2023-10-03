@@ -1,0 +1,54 @@
+.movie-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.movie-details .poster {
+  min-width: 30%;
+  max-width: 30%;
+  margin-right: 50px;
+}
+
+.movie-details .poster img {
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.movie-details .title {
+  font-size: var(--xl-text);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-right: 25px;
+}
+
+.movie-details .rating {
+  border: 1px solid #fff;
+  border-radius: 99px;
+  font-size: var(--large-text);
+  font-weight: 300;
+  padding: 12px;
+  vertical-align: text-top;
+}
+
+.movie-details .genres {
+  font-size: var(--small-text);
+  opacity: 0.5;
+}
+
+.movie-details .info {
+  color: var(--secondary-color);
+  font-size: var(--large-text);
+  font-weight: 300;
+  margin: 20px 0;
+}
+
+.movie-details .info-item {
+  margin-right: 25px;
+}
+
+.movie-details .description {
+  font-size: var(--medium-text);
+  opacity: 0.5;
+}

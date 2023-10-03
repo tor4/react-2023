@@ -1,0 +1,40 @@
+.sort-control {
+  font-size: var(--small-text);
+  font-weight: 400;
+  letter-spacing: 0.89px;
+  display: flex;
+  flex-direction: row;
+}
+
+.sort-control label {
+  opacity: 0.6;
+  text-transform: uppercase;
+  margin-right: 20px;
+}
+
+.sort-control .custom-select {
+  display: inline-block;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  width: 130px;
+}
+
+.sort-control .custom-select::after {
+  content: "";
+  width: 0.6em;
+  height: 0.4em;
+  background-color: var(--secondary-color);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
+}
+
+.sort-control .custom-select select {
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.sort-control .custom-select select,
+.sort-control .custom-select:after {
+  grid-area: select;
+}
