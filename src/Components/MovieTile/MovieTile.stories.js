@@ -2,6 +2,7 @@ import { MovieTile } from './MovieTile';
 import '../../index.css';
 
 export default {
+    title: 'Movie/MovieTile',
     component: MovieTile,
     tags: ['autodocs'],
 };

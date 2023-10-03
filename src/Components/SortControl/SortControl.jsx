@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './SortControl.css';
+import { Select } from '../Select/Select';
+
+const sortByOptions = [
+  { text: 'Release Date', value: 'releaseYear' },
+  { text: 'Title', value: 'name' },
+];
 
 export function SortControl({ selected, onChange }) {
   const defaultSelected = 'releaseDate';
@@ -15,16 +21,7 @@ export function SortControl({ selected, onChange }) {
   return (
     <div className="sort-control">
       <label htmlFor="sort-by">Sort by</label>
-      <span className='custom-select'>
-        <select
-          value={sortBy}
-          onChange={handleChange}
-          id="sort-by"
-        >
-          <option value="releaseDate">Release Date</option>
-          <option value="title">Title</option>
-        </select>
-      </span>
+      <Select value={sortBy} onChange={handleChange} options={sortByOptions} />
     </div>
   )
 };

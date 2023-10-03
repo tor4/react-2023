@@ -1,0 +1,41 @@
+.Dialog {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--background-color);
+  padding: 40px;
+
+  min-width: 500px;
+}
+
+.Dialog .close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: var(--large-text);
+  border: none;
+  font-size: var(--medium-text);
+  padding: 0;
+  margin: 0;
+}
+
+.Dialog h2 {
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.Dialog .content {
+  font-size: var(--small-text);
+}
+
+.Dialog .content .buttons {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  margin-top: 20px;
+}

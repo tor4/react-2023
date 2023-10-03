@@ -1,0 +1,40 @@
+.MovieForm {
+  max-width: 700px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MovieForm .control,
+.MovieForm .control-wide {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  font-size: var(--small-text);
+}
+
+.MovieForm .control label,
+.MovieForm .control-wide label {
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  font-size: var(--small-text);
+  font-weight: 600;
+  letter-spacing: 0.89px;
+  margin-bottom: 10px;
+}
+
+.MovieForm .control select {
+  height: 40px;
+}
+
+.MovieForm .control:nth-child(odd) {
+  width: 62.5%;
+  padding-right: 20px;
+}
+
+.MovieForm .control:nth-child(even) {
+  width: 37.5%;
+}
+
+.MovieForm .control-wide {
+  width: 100%;
+}

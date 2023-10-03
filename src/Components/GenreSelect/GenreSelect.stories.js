@@ -4,6 +4,7 @@ import '../../index.css';
 const genres = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
 
 export default {
+    title: 'Filtering/GenreSelect',
     component: GenreSelect,
     tags: ['autodocs'],
     argTypes: {

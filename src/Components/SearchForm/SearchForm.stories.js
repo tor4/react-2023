@@ -4,6 +4,7 @@ import { SearchForm } from './SearchForm';
 import '../../index.css';
 
 export default {
+    title: 'Filtering/SearchForm',
     component: SearchForm,
     tags: ['autodocs'],
 };

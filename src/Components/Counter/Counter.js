@@ -24,7 +24,7 @@ export class Counter extends React.Component {
       createElement(
         "button",
         {
-          className: "btn",
+          className: "primary",
           'data-cy': 'decrement',
           onClick: this.decrease.bind(this)
         },
@@ -34,7 +34,7 @@ export class Counter extends React.Component {
       createElement(
         "button",
         {
-          className: "btn",
+          className: "primary",
           'data-cy': 'increment',
           onClick: this.increase.bind(this)
         },

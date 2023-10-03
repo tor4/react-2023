@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import { userEvent } from "@storybook/testing-library";
 import { SortControl } from './SortControl';
 
@@ -10,18 +10,20 @@ describe('SortControl component', () => {
   });
 
   it('should render selected option when passed', () => {
-    render(<SortControl selected="title" />);
+    render(<SortControl selected="name" />);
 
     expect(screen.getByRole('option', { name: 'Title' }).selected).toBeTruthy();
   })
 
-  it('should call onChange handler when chnage option', async () => {
+  it('should call onChange handler when change option', async () => {
     const onChange = jest.fn();
-    render(<SortControl selected="title" onChange={onChange} />);
+    render(<SortControl selected="name" onChange={onChange} />);
 
-    await userEvent.selectOptions(screen.getByRole('combobox'), 'releaseDate');
+    await act(async () => {
+      await userEvent.selectOptions(screen.getByRole('combobox'), 'releaseYear');
+    })
 
     expect(screen.getByRole('option', { name: 'Release Date' }).selected).toBeTruthy();
-    expect(onChange).toBeCalledWith('releaseDate');
+    expect(onChange).toBeCalledWith('releaseYear');
   })
 });
