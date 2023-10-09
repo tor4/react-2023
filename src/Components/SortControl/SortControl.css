@@ -13,28 +13,11 @@
 }
 
 .sort-control .custom-select {
-  display: inline-block;
-  display: grid;
-  grid-template-areas: "select";
-  align-items: center;
-  width: 130px;
-}
-
-.sort-control .custom-select::after {
-  content: "";
-  width: 0.6em;
-  height: 0.4em;
-  background-color: var(--secondary-color);
-  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-  justify-self: end;
+  width: 150px;
 }
 
 .sort-control .custom-select select {
-  text-transform: uppercase;
-  color: var(--text-color);
-}
-
-.sort-control .custom-select select,
-.sort-control .custom-select:after {
-  grid-area: select;
+  background-color: transparent;
+  font-size: var(--small-text);
+  height: auto;
 }

@@ -29,7 +29,9 @@ figure {
   margin: 0;
 }
 
-select {
+select,
+input,
+textarea {
   appearance: none;
   background-color: transparent;
   border: none;
@@ -47,38 +49,69 @@ select {
   --main-color: rgb(3, 155, 229);
   --text-color: #fff;
   --secondary-color: #f65261;
+  --background-color: #232323;
+  --input-color: #323232;
 
-  --small-text: 14px;
+  --small-text: 12px;
   --medium-text: 15px;
   --large-text: 20px;
   --xl-text: 34px;
 }
 
-.btn {
-  padding: 10px;
-  margin: 0 10px;
-  background-color: var(--main-color);
-  border: none;
+button {
+  background: transparent;
+  border: 1px solid;
   border-radius: 4px;
-  min-width: 30px;
-  color: rgb(255, 255, 255);
-  font-size: 14px;
-  font-weight: 700;
+
+  padding: 10px 30px;
+  margin-left: 10px;
+
+  color: var(--text-color);
+  cursor: pointer;
+
+  font-family: Montserrat;
+  font-size: var(--medium-text);
+  text-transform: uppercase;
+}
+
+button.primary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+button.secondary {
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
 }
 
 input {
-  border-color: rgba(0, 0, 0, 0.87);
-  border-width: 0.5px;
-  caret-color: var(--main-color);
-  color: rgba(0, 0, 0, 0.87);
-  font-size: 15px;
-  height: 34px;
+  background-color: var(--input-color);
+  border: none;
+  caret-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: var(--medium-text);
+  height: 40px;
   letter-spacing: 0.15px;
-  outline-color: var(--main-color);
-  padding: 0 16px;
-  border-radius: 4px;
+  padding: 0 15px;
 }
 
-.counter {
-  color: #000;
+select {
+  background-color: var(--input-color);
+  font-size: var(--medium-text);
+  height: 40px;
+  letter-spacing: 0.15px;
+  padding: 0 15px;
+}
+
+textarea {
+  width: 100%;
+  background-color: var(--input-color);
+  border: none;
+  caret-color: var(--secondary-color);
+  color: var(--text-color);
+  font-family: Montserrat;
+  font-size: var(--medium-text);
+  letter-spacing: 0.15px;
+  padding: 15px;
 }

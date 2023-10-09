@@ -1,0 +1,27 @@
+.custom-select {
+  min-width: 130px;
+  display: inline-block;
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+}
+
+.custom-select::after {
+  content: "";
+  width: 0.8rem;
+  height: 0.5rem;
+  background-color: var(--secondary-color);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
+  margin-right: 10px;
+}
+
+.custom-select select {
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.custom-select select,
+.custom-select:after {
+  grid-area: select;
+}

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { SearchForm } from "./SearchForm";
 
@@ -24,8 +24,10 @@ describe('SearchForm component', () => {
         const onSearch = jest.fn();
         render(<SearchForm onSearch={onSearch} />);
 
-        userEvent.type(screen.getByRole('textbox'), 'search query');
-        userEvent.keyboard('{Enter}');
+        act(() => {
+            userEvent.type(screen.getByRole('textbox'), 'search query');
+            userEvent.keyboard('{Enter}');
+        })
 
         expect(onSearch).toBeCalledWith('search query');
         expect(onSearch).toBeCalledTimes(1);

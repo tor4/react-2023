@@ -1,4 +1,6 @@
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
+import custom from '../webpack.config.js';
+
 const config = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
@@ -16,5 +18,14 @@ const config = {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
+  webpackFinal(config) {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: custom.resolve.alias,
+      },
+    }
+  },
 };
 export default config;

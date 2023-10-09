@@ -1,11 +1,11 @@
-import {Counter, SearchForm, GenreSelect} from "./Components";
-import "./App.css";
 import { useState } from "react";
+import { genres } from "utils/constants";
+import { Counter, SearchForm, GenreSelect } from "./Components";
+import "./App.css";
 
 export default function App() {
   const [selected, setSelected] = useState("Comedy");
   const [query, setQuery] = useState('');
-  const genres = ["All", "Documentary", "Comedy", "Horror", "Crime"];
 
   return (
     <div className="App">

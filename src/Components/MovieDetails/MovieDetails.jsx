@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { NO_IMAGE_URL } from '../../Utils/constants';
-import { formatDuration } from '../../Utils/utils';
+import { NO_IMAGE_URL } from 'utils/constants';
+import { formatDuration } from 'utils/utils';
 import './MovieDetails.css';
 
 export function MovieDetails({ imageUrl, name, genres, releaseYear,

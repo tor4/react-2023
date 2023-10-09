@@ -6,7 +6,7 @@ export function GenreSelect({ genres, selected, onSelect }) {
     const listItems = genres.map((genre, i) => (
         <li key={i}>
             <button
-                className={`btn tab ${genre === selected ? "selected" : ""}`}
+                className={`tab ${genre === selected ? "selected" : ""}`}
                 onClick={() => onSelect(genre)}
             >
                 {genre}
