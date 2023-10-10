@@ -51,6 +51,7 @@ textarea {
   --secondary-color: #f65261;
   --background-color: #232323;
   --input-color: #323232;
+  --border-color: #424242;
 
   --small-text: 12px;
   --medium-text: 15px;
@@ -83,6 +84,11 @@ button.secondary {
   background-color: var(--background-color);
   color: var(--secondary-color);
   border-color: var(--secondary-color);
+}
+
+button.icon {
+  border: none;
+  padding: 0px;
 }
 
 input {

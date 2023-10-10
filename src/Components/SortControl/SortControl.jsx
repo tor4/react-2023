@@ -9,19 +9,10 @@ const sortByOptions = [
 ];
 
 export function SortControl({ selected, onChange }) {
-  const defaultSelected = 'releaseDate';
-
-  const [sortBy, setSortBy] = useState(selected || defaultSelected);
-
-  const handleChange = (e) => {
-    setSortBy(e.target.value);
-    onChange(e.target.value);
-  }
-
   return (
     <div className="sort-control">
       <label htmlFor="sort-by">Sort by</label>
-      <Select value={sortBy} onChange={handleChange} options={sortByOptions} />
+      <Select id={'sort-by'} name={'sortBy'} value={selected} onChange={onChange} options={sortByOptions} />
     </div>
   )
 };
@@ -29,4 +20,8 @@ export function SortControl({ selected, onChange }) {
 SortControl.propTypes = {
   selected: PropTypes.string,
   onChange: PropTypes.func,
+};
+
+SortControl.defaultProps = {
+  selected: 'releaseDate',
 };

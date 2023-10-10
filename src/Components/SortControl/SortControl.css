@@ -4,6 +4,7 @@
   letter-spacing: 0.89px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .sort-control label {

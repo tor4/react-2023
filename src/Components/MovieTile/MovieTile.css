@@ -10,7 +10,7 @@
 .movie-tile img {
     display: block;
     max-width: 100%;
-    max-height: 450px;
+    height: 360px;
     object-fit: cover;
 }
 
