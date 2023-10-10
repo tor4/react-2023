@@ -4,17 +4,17 @@ import { MovieDetails } from '../MovieDetails/MovieDetails';
 import { GenreSelect } from '../GenreSelect/GenreSelect';
 import { SortControl } from '../SortControl/SortControl';
 import { MovieTile } from '../MovieTile/MovieTile';
-import { genres } from 'utils/constants';
-import { getMovies } from 'utils/utils';
+import { genres } from '../../Utils/constants';
+import { getMovies } from '../../Utils/utils';
 
 import './MovieListPage.css';
 
 export function MovieListPage(props) {
   let controller = useRef(null);
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [sortCriterion, setSortCriterion] = useState('title');
-  const [activeGenre, setActiveGenre] = useState('All');
+  const [searchQuery, setSearchQuery] = useState(null);
+  const [sortCriterion, setSortCriterion] = useState('release_date');
+  const [activeGenre, setActiveGenre] = useState(null);
   const [movieList, setMovieList] = useState(props.movieList || []);
   const [selectedMovie, setSelectedMovie] = useState(props.selectedMovie);
 
@@ -27,8 +27,10 @@ export function MovieListPage(props) {
 
     const params = {
       sortBy: sortCriterion,
+      sortOrder: 'asc',
       search: searchQuery,
-      genres: activeGenre,
+      searchBy: 'title',
+      filter: activeGenre,
       limit: 9,
     };
 
@@ -80,7 +82,8 @@ export function MovieListPage(props) {
       {header}
       <main className='container'>
         <div className='filters'>
-          <GenreSelect genres={genres} selected={activeGenre} onSelect={setActiveGenre} />
+          <GenreSelect genres={genres} selected={activeGenre}
+            onSelect={(genre) => { setActiveGenre(genre === 'All' ? null : genre) }} />
           <SortControl selected={sortCriterion} onChange={setSortCriterion} />
         </div>
         <hr />

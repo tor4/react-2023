@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { NO_IMAGE_URL } from 'utils/constants';
+import { NO_IMAGE_URL } from '../../Utils/constants';
 import './MovieTile.css';
 
 export function MovieTile({ movie, onSelect, onEdit, onDelete }) {
