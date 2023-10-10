@@ -11,3 +11,11 @@ export function formatDuration(minutes) {
   }
   return `${hours}h ${mins}min`;
 }
+
+export async function getMovies(params, options) {
+  const response = await fetch(`http://localhost:4000/movies?${new URLSearchParams(params).toString()}`, options);
+  if (response.ok) {
+    return response.json();
+  }
+  throw new Error('Not found');
+}
