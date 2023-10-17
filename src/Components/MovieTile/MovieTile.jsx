@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { NO_IMAGE_URL } from 'utils/constants';
+import { NO_IMAGE_URL } from '../../Utils/constants';
 import './MovieTile.css';
 
-export function MovieTile({ imageUrl, name, releaseYear, genres, onSelect, onEdit, onDelete }) {
+export function MovieTile({ movie, onSelect, onEdit, onDelete }) {
     const [menuOpened, setMenuOpened] = useState(false);
+
+    const { imageUrl, name, releaseYear, genres } = movie
 
     const openMenu = (e) => {
         e.stopPropagation();
@@ -17,7 +19,7 @@ export function MovieTile({ imageUrl, name, releaseYear, genres, onSelect, onEdi
     }
 
     return (
-        <article className='movie-tile' onClick={() => onSelect(name)}>
+        <article className='movie-tile' onClick={() => onSelect(movie)}>
             <div className={`context-menu ${menuOpened && 'opened'}`} onClick={openMenu}>
                 <div className='menu'>
                     <button type="button" className='close' onClick={closeMenu}>x</button>
@@ -44,15 +46,17 @@ export function MovieTile({ imageUrl, name, releaseYear, genres, onSelect, onEdi
 }
 
 MovieTile.propTypes = {
-    imageUrl: PropTypes.string,
-    name: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number,
-    genres: PropTypes.arrayOf(PropTypes.string),
+    movie: PropTypes.shape({
+        imageUrl: PropTypes.string,
+        name: PropTypes.string.isRequired,
+        releaseYear: PropTypes.number,
+        genres: PropTypes.arrayOf(PropTypes.string),
+    }),
     onSelect: PropTypes.func,
     onEdit: PropTypes.func,
     onDelete: PropTypes.func,
 }
 
 MovieTile.defaultProps = {
-    genres: [],
+    movie: {},
 }

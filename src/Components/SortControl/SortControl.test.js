@@ -10,7 +10,7 @@ describe('SortControl component', () => {
   });
 
   it('should render selected option when passed', () => {
-    render(<SortControl selected="name" />);
+    render(<SortControl selected="title" />);
 
     expect(screen.getByRole('option', { name: 'Title' }).selected).toBeTruthy();
   })
@@ -20,10 +20,9 @@ describe('SortControl component', () => {
     render(<SortControl selected="name" onChange={onChange} />);
 
     await act(async () => {
-      await userEvent.selectOptions(screen.getByRole('combobox'), 'releaseYear');
+      await userEvent.selectOptions(screen.getByRole('combobox'), 'release_date');
     })
 
-    expect(screen.getByRole('option', { name: 'Release Date' }).selected).toBeTruthy();
-    expect(onChange).toBeCalledWith('releaseYear');
+    expect(onChange).toBeCalledWith('release_date');
   })
 });

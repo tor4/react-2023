@@ -11,7 +11,7 @@ describe('MoviewTile component', () => {
   };
 
   it('should render image', () => {
-    render(<MovieTile {...movie} />);
+    render(<MovieTile movie={movie} />);
 
     const image = screen.getByRole('img');
 
@@ -19,7 +19,8 @@ describe('MoviewTile component', () => {
   });
 
   it('should render default image if not passed', () => {
-    render(<MovieTile name={movie.name} />);
+    const movieWithoutImage = { ...movie, imageUrl: undefined };
+    render(<MovieTile movie={movieWithoutImage} />);
 
     const image = screen.getByRole('img');
 
@@ -27,19 +28,19 @@ describe('MoviewTile component', () => {
   });
 
   it('should display name', () => {
-    render(<MovieTile {...movie} />);
+    render(<MovieTile movie={movie} />);
 
     expect(screen.getByText(movie.name)).toBeInTheDocument();
   });
 
   it('should display release year', () => {
-    render(<MovieTile {...movie} />);
+    render(<MovieTile movie={movie} />);
 
     expect(screen.getByText(movie.releaseYear)).toBeInTheDocument();
   });
 
   it('should display genres', () => {
-    render(<MovieTile {...movie} />);
+    render(<MovieTile movie={movie} />);
 
     expect(screen.getByText(movie.genres.join(', '))).toBeInTheDocument();
   });
@@ -47,11 +48,11 @@ describe('MoviewTile component', () => {
   it('should call onSelect handler after clicking on tile', () => {
     const onSelect = jest.fn();
 
-    render(<MovieTile {...movie} onSelect={onSelect} />);
+    render(<MovieTile movie={movie} onSelect={onSelect} />);
 
     const tile = screen.getByRole('article');
     fireEvent.click(tile);
 
-    expect(onSelect).toBeCalledWith(movie.name);
+    expect(onSelect).toBeCalledWith(movie);
   });
 })

@@ -8,7 +8,7 @@ export function Select({ id, name, value, options, onChange }) {
         id={id}
         name={name}
         value={value}
-        onChange={onChange}
+        onChange={(e) => onChange?.(e.target.value)}
       >
         {
           options.map(({ text, value }) => (<option key={value} value={value}>{text}</option>))
