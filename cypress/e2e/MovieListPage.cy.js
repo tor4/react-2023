@@ -25,6 +25,11 @@ describe('Movie list page', () => {
           expect(h3.innerText.toUpperCase()).to.include(searchQuery.toUpperCase());
         })
       });
+
+    cy.location('search')
+      .should((search) => {
+        expect(search).to.contain('search=' + searchQuery);
+      });
   });
 
   it('should filter movies by genre', () => {
@@ -48,6 +53,11 @@ describe('Movie list page', () => {
           expect(p.innerText).to.include(genre);
         })
       });
+
+    cy.location('search')
+      .should((search) => {
+        expect(search).to.contain('filter=' + genre);
+      });
   });
 
   it('should sort movies', () => {
@@ -67,16 +77,28 @@ describe('Movie list page', () => {
     cy.get('.movie-tile')
       .find('h3')
       .should('have.text', DefaultMovie.title);
+
+    cy.location('search')
+      .should((search) => {
+        expect(search).to.contain('sortBy=' + sortBy);
+      });
   });
 
   it('should display details of selected movies', () => {
+    cy.intercept({
+      pathname: '/movies',
+    }, {
+      data: [DefaultMovie]
+    }).as('getMovies');
+
     cy.get('.details-container').should('not.exist');
+    cy.wait('@getMovies');
 
     cy.get('.movie-tile').first().click();
 
     cy.get('.details-container').within(() => {
-      cy.get('.title').should('have.text', 'The Gold Rush');
-      cy.get('.rating').should('have.text', '7.8');
+      cy.get('.title').should('have.text', DefaultMovie.title);
+      cy.get('.rating').should('have.text', DefaultMovie.vote_average);
     });
   });
 

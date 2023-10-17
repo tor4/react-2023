@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { SearchForm } from '../SearchForm/SearchForm';
 import { MovieDetails } from '../MovieDetails/MovieDetails';
 import { GenreSelect } from '../GenreSelect/GenreSelect';
@@ -12,9 +14,11 @@ import './MovieListPage.css';
 export function MovieListPage(props) {
   let controller = useRef(null);
 
-  const [searchQuery, setSearchQuery] = useState(null);
-  const [sortCriterion, setSortCriterion] = useState('release_date');
-  const [activeGenre, setActiveGenre] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
+  const [sortCriterion, setSortCriterion] = useState(searchParams.get('sortBy') || 'release_date');
+  const [activeGenre, setActiveGenre] = useState(searchParams.get('filter') || '');
   const [movieList, setMovieList] = useState(props.movieList || []);
   const [selectedMovie, setSelectedMovie] = useState(props.selectedMovie);
 
@@ -25,12 +29,17 @@ export function MovieListPage(props) {
 
     controller.current = new AbortController();
 
-    const params = {
+    const searchParams = {
       sortBy: sortCriterion,
-      sortOrder: 'asc',
       search: searchQuery,
-      searchBy: 'title',
       filter: activeGenre,
+    }
+    setSearchParams(searchParams);
+
+    const params = {
+      ...searchParams,
+      sortOrder: 'desc',
+      searchBy: 'title',
       limit: 9,
     };
 
