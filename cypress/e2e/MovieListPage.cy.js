@@ -86,15 +86,15 @@ describe('Movie list page', () => {
 
   it('should display details of selected movies', () => {
     cy.intercept({
-      pathname: '/movies',
-    }, {
-      data: [DefaultMovie]
-    }).as('getMovies');
+      pathname: '/movies/337167',
+    },
+      DefaultMovie
+    ).as('getMovie');
 
     cy.get('.details-container').should('not.exist');
-    cy.wait('@getMovies');
 
     cy.get('.movie-tile').first().click();
+    cy.wait('@getMovie');
 
     cy.get('.details-container').within(() => {
       cy.get('.title').should('have.text', DefaultMovie.title);
