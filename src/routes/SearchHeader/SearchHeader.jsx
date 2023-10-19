@@ -2,15 +2,16 @@ import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { SearchForm } from '../../Components/SearchForm/SearchForm';
 import './SearchHeader.css';
+import { SEARCH_PARAMS } from "../../Utils/constants";
 
 export function SearchHeader() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
+  const [searchQuery, setSearchQuery] = useState(searchParams.get(SEARCH_PARAMS.QUERY) || '');
   const handleSearch = (query) => {
     setSearchQuery(query);
 
-    searchParams.set('search', query);
+    searchParams.set(SEARCH_PARAMS.QUERY, query);
     setSearchParams(searchParams);
   }
 
@@ -19,7 +20,7 @@ export function SearchHeader() {
     <SearchForm
       query={searchQuery}
       onSearch={handleSearch}
-      placeholder={'What do you want to watch?'}
+      placeholder='What do you want to watch?'
     />
   </header>);
 }
