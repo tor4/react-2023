@@ -1,4 +1,4 @@
-import { MovieListPage } from "./Components/MovieListPage/MovieListPage";
+import { MovieListPage } from "./routes/MovieListPage/MovieListPage";
 import "./App.css";
 
 
