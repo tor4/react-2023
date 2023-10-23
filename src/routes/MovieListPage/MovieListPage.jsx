@@ -84,6 +84,9 @@ export function MovieListPage() {
                 window.scrollTo(0, 0);
                 navigate(`/movies/${movie.id}?${searchParams.toString()}`);
               }}
+              onEdit={(movie) => {
+                navigate(`/movies/${movie.id}/edit?${searchParams.toString()}`);
+              }}
             />
           ))}
         </div>

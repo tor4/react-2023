@@ -6,6 +6,7 @@ import { loader as moviesLoader } from './routes/MovieListPage/MovieListPage';
 import { SearchHeader } from "./routes/SearchHeader/SearchHeader";
 import { MovieHeader, loader as movieLoader } from "./routes/MovieHeader/MovieHeader";
 import { AddMovieForm, addMovieAction } from "./routes/AddMovieForm/AddMovieForm";
+import { EditMovieForm, action as editMovieAction } from "./routes/EditMovieForm/EditMovieForm";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ export const router = createBrowserRouter([
       path: 'movies/:movieId',
       element: <MovieHeader />,
       loader: movieLoader,
+    }, {
+      path: 'movies/:movieId/edit',
+      element: <EditMovieForm />,
+      loader: movieLoader,
+      action: editMovieAction,
     }],
   },
 ]);

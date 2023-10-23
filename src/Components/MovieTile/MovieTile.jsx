@@ -25,11 +25,11 @@ export function MovieTile({ movie, onSelect, onEdit, onDelete }) {
                     <button type="button" className='close' onClick={closeMenu}>x</button>
                     <button className='option' onClick={(e) => {
                         e.stopPropagation();
-                        onEdit(name);
+                        onEdit(movie);
                     }}>Edit</button>
                     <button className='option' onClick={(e) => {
                         e.stopPropagation();
-                        onDelete(name);
+                        onDelete(movie);
                     }}>Delete</button>
                 </div>
             </div>
