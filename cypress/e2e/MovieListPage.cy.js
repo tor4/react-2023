@@ -1,3 +1,4 @@
+import { genres } from "../../src/Utils/constants";
 import { DefaultMovie } from "./data";
 
 describe('Movie list page', () => {
@@ -86,7 +87,7 @@ describe('Movie list page', () => {
 
   it('should display details of selected movies', () => {
     cy.intercept({
-      pathname: '/movies/337167',
+      pathname: '/movies/*',
     },
       DefaultMovie
     ).as('getMovie');
@@ -112,5 +113,77 @@ describe('Movie list page', () => {
     cy.get('.icon.search').click();
 
     cy.get('.search-container').should('be.visible');
+  });
+
+  it('should open Add new movie dialog after clicking on Add movie button', () => {
+    cy.get('.add-movie').click();
+
+    cy.get('.Dialog').should('be.visible');
+    cy.get('.Dialog').find('input[name="releaseDate"]').should('have.value', '');
+    cy.get('.Dialog').find('input[name="name"]').should('have.value', '');
+    cy.get('.Dialog').find('input[name="imageUrl"]').should('have.value', '');
+    cy.get('.Dialog').find('input[name="rating"]').should('have.value', '');
+    cy.get('.Dialog').find('input[name="duration"]').should('have.value', '');
+    cy.get('.Dialog').find('textarea[name="description"]').should('have.value', '');
+    cy.get('.Dialog').find('select[name="genre"]').should('have.value', genres[0]);
+  });
+
+  it('should add new movie', () => {
+    var todayDate = new Date().toISOString().slice(0, 10);
+    cy.intercept({
+      method: 'POST',
+      pathname: '/movies',
+    }).as('addMovie');
+
+    cy.intercept('/movies/*').as('getMovie');
+
+    cy.get('.add-movie').click();
+    cy.get('.Dialog').find('input[name="name"]').type('The Green Mile');
+    cy.get('.Dialog').find('input[name="releaseDate"]').type(todayDate);
+    cy.get('.Dialog').find('input[name="imageUrl"]').type('https://www.kinopoisk.ru/14qwm6223');
+    cy.get('.Dialog').find('input[name="rating"]').type('9.1');
+    cy.get('.Dialog').find('input[name="duration"]').type('189');
+    cy.get('.Dialog').find('textarea[name="description"]').type('description');
+    cy.get('.Dialog').find('select[name="genre"]').select('Crime');
+
+    cy.get('.Dialog').find('button[type="submit"]').click();
+
+    cy.wait(['@addMovie', '@getMovie']);
+
+    cy.location()
+      .should((location) => {
+        expect(location.pathname).to.contain('/movies/');
+      });
+
+    cy.get('.details-container').within(() => {
+      cy.get('.title').should('have.text', 'The Green Mile');
+      cy.get('.rating').should('have.text', '9.1');
+    });
+
+    cy.get('.movie-tile').first()
+      .find('h3')
+      .should('have.text', 'The Green Mile');
+  });
+
+  it('should open Edit movie dialog after clicking on Edit movie button', () => {
+    cy.intercept({
+      pathname: '/movies/*',
+    },
+      DefaultMovie
+    ).as('getMovie');
+
+    cy.get('.movie-tile').first()
+      .find('.context-menu').click();
+
+    cy.get('.movie-tile').first()
+      .find('.context-menu .menu button.edit').click();
+
+    cy.get('.Dialog').should('be.visible');
+    cy.get('.Dialog').find('input[name="name"]').should('have.value', DefaultMovie.title);
+    cy.get('.Dialog').find('input[name="releaseDate"]').should('have.value', DefaultMovie.release_date);
+    cy.get('.Dialog').find('input[name="imageUrl"]').should('have.value', DefaultMovie.poster_path);
+    cy.get('.Dialog').find('input[name="rating"]').should('have.value', DefaultMovie.vote_average);
+    cy.get('.Dialog').find('input[name="duration"]').should('have.value', DefaultMovie.runtime);
+    cy.get('.Dialog').find('textarea[name="description"]').should('have.value', DefaultMovie.overview);
   });
 });

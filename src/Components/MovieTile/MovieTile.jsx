@@ -23,7 +23,7 @@ export function MovieTile({ movie, onSelect, onEdit, onDelete }) {
             <div className={`context-menu ${menuOpened && 'opened'}`} onClick={openMenu}>
                 <div className='menu'>
                     <button type="button" className='close' onClick={closeMenu}>x</button>
-                    <button className='option' onClick={(e) => {
+                    <button className='option edit' onClick={(e) => {
                         e.stopPropagation();
                         onEdit(movie);
                     }}>Edit</button>

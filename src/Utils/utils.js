@@ -27,8 +27,7 @@ export function convertToMovieModel(movie) {
 }
 
 export function convertToMovie(data, id) {
-  return {
-    id: parseInt(id),
+  const object = {
     title: data.name,
     overview: data.description,
     poster_path: data.imageUrl,
@@ -37,6 +36,11 @@ export function convertToMovie(data, id) {
     vote_average: parseFloat(data.rating),
     genres: [data.genre],
   }
+
+  if (id) {
+    object.id = parseInt(id);
+  }
+  return object;
 }
 
 export async function getMovies(params, options) {

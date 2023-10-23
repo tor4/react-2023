@@ -18,7 +18,7 @@ export async function loader({ request }) {
   const searchParams = new URL(request.url).searchParams;
 
   const params = {
-    sortBy: searchParams.get(SEARCH_PARAMS.SORT_BY),
+    sortBy: searchParams.get(SEARCH_PARAMS.SORT_BY) || 'release_date',
     search: searchParams.get(SEARCH_PARAMS.QUERY),
     filter: searchParams.get(SEARCH_PARAMS.GENRE),
     sortOrder: 'desc',
@@ -46,7 +46,7 @@ export function MovieListPage() {
   const movieList = useLoaderData();
 
   const [sortCriterion, setSortCriterion] = useState(searchParams.get(SEARCH_PARAMS.SORT_BY) || 'release_date');
-  const [activeGenre, setActiveGenre] = useState(searchParams.get(SEARCH_PARAMS.GENRE) || '');
+  const [activeGenre, setActiveGenre] = useState(searchParams.get(SEARCH_PARAMS.GENRE) || null);
 
   const handleGenreSelect = (genre) => {
     const filter = genre === 'All' ? null : genre;
