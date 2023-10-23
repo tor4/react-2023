@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
 import { SearchForm } from '../../Components/SearchForm/SearchForm';
 import './SearchHeader.css';
 import { SEARCH_PARAMS } from "../../Utils/constants";
 
 export function SearchHeader() {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [searchQuery, setSearchQuery] = useState(searchParams.get(SEARCH_PARAMS.QUERY) || '');
@@ -15,12 +16,18 @@ export function SearchHeader() {
     setSearchParams(searchParams);
   }
 
-  return (<header className='search-container container'>
-    <h2>Find your movie</h2>
-    <SearchForm
-      query={searchQuery}
-      onSearch={handleSearch}
-      placeholder='What do you want to watch?'
-    />
-  </header>);
+  return (
+    <header className='search-container container'>
+      <button className='secondary add-movie'
+        onClick={() => {
+          navigate(`/new?${searchParams.toString()}`)
+        }}>+ Add movie</button>
+      <Outlet />
+      <h2>Find your movie</h2>
+      <SearchForm
+        query={searchQuery}
+        onSearch={handleSearch}
+        placeholder='What do you want to watch?'
+      />
+    </header>);
 }

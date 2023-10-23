@@ -25,6 +25,19 @@ export function convertToMovieModel(movie) {
   };
 }
 
+export function convertToMovie(data) {
+  return {
+    id: data.id,
+    title: data.name,
+    overview: data.description,
+    poster_path: data.imageUrl,
+    release_date: data.releaseDate,
+    runtime: parseFloat(data.duration),
+    vote_average: parseFloat(data.rating),
+    genres: [data.genre],
+  }
+}
+
 export async function getMovies(params, options) {
   let data = Object.fromEntries(Object.entries(params).filter(([_, v]) => v != null));
   const response = await fetch(`http://localhost:4000/movies?${new URLSearchParams(data).toString()}`, options);
@@ -40,4 +53,20 @@ export async function getMovie(id) {
     return response.json();
   }
   throw new Error('Not found');
+}
+
+export async function addMovie(data) {
+  try {
+    const response = await fetch('http://localhost:4000/movies', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return await response.json();
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
