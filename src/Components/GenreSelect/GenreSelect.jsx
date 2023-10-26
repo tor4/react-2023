@@ -3,7 +3,16 @@ import "./GenreSelect.css";
 
 
 export function GenreSelect({ genres, selected, onSelect }) {
-    const listItems = genres.map((genre, i) => (
+    const all = <li key='all'>
+        <button
+            className={`tab ${selected === null ? "selected" : ""}`}
+            onClick={() => onSelect(null)}
+        >
+            All
+        </button>
+    </li>
+
+    const items = genres.map((genre, i) => (
         <li key={i}>
             <button
                 className={`tab ${genre === selected ? "selected" : ""}`}
@@ -13,7 +22,9 @@ export function GenreSelect({ genres, selected, onSelect }) {
             </button>
         </li>
     ));
-    return <ul className="GenreSelect">{listItems}</ul>;
+
+
+    return <ul className="GenreSelect">{[all, ...items]}</ul>;
 }
 
 GenreSelect.propTypes = {

@@ -9,7 +9,7 @@ describe('GenreSelect component', () => {
 
         const items = screen.getAllByRole('button');
 
-        expect(items.length).toBe(genres.length);
+        expect(items.length).toBe(genres.length + 1);
     });
 
     it('should highlight selected genre', () => {

@@ -5,7 +5,7 @@ import './Dialog.css';
 
 
 export function Dialog({ title, children, onClose }) {
-  return (<PortalWithState closeOnOutsideClick closeOnEsc defaultOpen onClose={() => onClose && onClose()}>
+  return (<PortalWithState closeOnEsc defaultOpen onClose={() => onClose?.()}>
     {({ closePortal, portal }) => (
       <>
         {portal(

@@ -16,3 +16,9 @@
 .search-container .SearchForm {
   width: 80%;
 }
+
+.search-container .add-movie {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}

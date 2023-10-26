@@ -19,10 +19,28 @@ export function convertToMovieModel(movie) {
     description: movie.overview,
     imageUrl: movie.poster_path,
     releaseYear: new Date(movie.release_date).getFullYear(),
+    releaseDate: movie.release_date,
     duration: movie.runtime,
     rating: movie.vote_average,
     genres: movie.genres,
   };
+}
+
+export function convertToMovie(data, id) {
+  const object = {
+    title: data.name,
+    overview: data.description,
+    poster_path: data.imageUrl,
+    release_date: data.releaseDate,
+    runtime: parseFloat(data.duration),
+    vote_average: parseFloat(data.rating),
+    genres: [data.genre],
+  }
+
+  if (id) {
+    object.id = parseInt(id);
+  }
+  return object;
 }
 
 export async function getMovies(params, options) {
@@ -40,4 +58,36 @@ export async function getMovie(id) {
     return response.json();
   }
   throw new Error('Not found');
+}
+
+export async function addMovie(data) {
+  try {
+    const response = await fetch('http://localhost:4000/movies', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return await response.json();
+  } catch (e) {
+    throw new Error(e.message);
+  }
+}
+
+export async function editMovie(data) {
+  try {
+    const response = await fetch('http://localhost:4000/movies', {
+      method: 'PUT',
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return await response.json();
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }

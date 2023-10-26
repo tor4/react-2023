@@ -4,7 +4,7 @@ import { Outlet, useLoaderData, useNavigate, useSearchParams } from "react-route
 import { GenreSelect } from '../../Components/GenreSelect/GenreSelect';
 import { SortControl } from '../../Components/SortControl/SortControl';
 import { MovieTile } from '../../Components/MovieTile/MovieTile';
-import { genres } from '../../Utils/constants';
+import { SEARCH_PARAMS, genres } from '../../Utils/constants';
 import { convertToMovieModel, getMovies } from '../../Utils/utils';
 
 import './MovieListPage.css';
@@ -12,17 +12,15 @@ import './MovieListPage.css';
 let controller = null;
 
 export async function loader({ request }) {
-  if (controller) {
-    controller.abort();
-  }
+  controller?.abort();
 
   controller = new AbortController();
   const searchParams = new URL(request.url).searchParams;
 
   const params = {
-    sortBy: searchParams.get('sortBy'),
-    search: searchParams.get('search'),
-    filter: searchParams.get('filter'),
+    sortBy: searchParams.get(SEARCH_PARAMS.SORT_BY) || 'release_date',
+    search: searchParams.get(SEARCH_PARAMS.QUERY),
+    filter: searchParams.get(SEARCH_PARAMS.GENRE),
     sortOrder: 'desc',
     searchBy: 'title',
     limit: 9,
@@ -47,17 +45,17 @@ export function MovieListPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const movieList = useLoaderData();
 
-  const [sortCriterion, setSortCriterion] = useState(searchParams.get('sortBy') || 'release_date');
-  const [activeGenre, setActiveGenre] = useState(searchParams.get('filter') || '');
+  const [sortCriterion, setSortCriterion] = useState(searchParams.get(SEARCH_PARAMS.SORT_BY) || 'release_date');
+  const [activeGenre, setActiveGenre] = useState(searchParams.get(SEARCH_PARAMS.GENRE) || null);
 
   const handleGenreSelect = (genre) => {
     const filter = genre === 'All' ? null : genre;
     setActiveGenre(filter);
 
     if (filter === null) {
-      searchParams.delete('filter');
+      searchParams.delete(SEARCH_PARAMS.GENRE);
     } else {
-      searchParams.set('filter', filter);
+      searchParams.set(SEARCH_PARAMS.GENRE, filter);
     }
     setSearchParams(searchParams);
   }
@@ -65,7 +63,7 @@ export function MovieListPage() {
   const handleSortCriterionChange = (sortCriterion) => {
     setSortCriterion(sortCriterion);
 
-    searchParams.set('sortBy', sortCriterion);
+    searchParams.set(SEARCH_PARAMS.SORT_BY, sortCriterion);
     setSearchParams(searchParams);
   }
 
@@ -85,6 +83,9 @@ export function MovieListPage() {
               onSelect={(movie) => {
                 window.scrollTo(0, 0);
                 navigate(`/movies/${movie.id}?${searchParams.toString()}`);
+              }}
+              onEdit={(movie) => {
+                navigate(`/movies/${movie.id}/edit?${searchParams.toString()}`);
               }}
             />
           ))}

@@ -1,44 +1,72 @@
 import PropTypes from 'prop-types';
-import { genres } from "utils/constants";
+import { genres } from "../../Utils/constants";
 import './MovieForm.css';
-import { Select } from '../Select/Select';
+import { useForm } from 'react-hook-form';
+import { Field } from '../Field/Field';
+
+const RequiredMessage = 'Cannot be empty.';
 
 export function MovieForm({ movie, onSubmit }) {
-  function onSubmitHandler(e) {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    onSubmit(data);
-  }
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    mode: 'all',
+    defaultValues: movie,
+  });
 
-  return (<form onSubmit={onSubmitHandler} className='MovieForm'>
-    <div className='control'>
-      <label htmlFor="name">Title</label>
-      <input type='text' id='name' name='name' placeholder='Movie Title' defaultValue={movie.name} />
-    </div>
-    <div className='control'>
-      <label htmlFor="release-year">Release date</label>
-      <input type='text' id='release-year' name='releaseYear' placeholder='2023' defaultValue={movie.releaseYear} />
-    </div>
-    <div className='control'>
-      <label htmlFor="image-url">Movie url</label>
-      <input type='text' id='image-url' name='imageUrl' placeholder='https://' defaultValue={movie.imageUrl} />
-    </div>
-    <div className='control'>
-      <label htmlFor="rating">Rating</label>
-      <input type='number' id='rating' name='rating' placeholder='7,8' step='0.1' defaultValue={movie.rating} />
-    </div>
-    <div className='control'>
-      <label htmlFor="genre">Genre</label>
-      <Select value={movie.genre} id='genre' name='genre' options={genres.map((genre) => ({ text: genre, value: genre }))} />
-    </div>
-    <div className='control'>
-      <label htmlFor="duration">Runtime</label>
-      <input type='number' id='duration' name='duration' placeholder='minutes' defaultValue={movie.duration} />
-    </div>
+  return (<form method='post' onSubmit={handleSubmit(onSubmit)} className='MovieForm'>
+    <Field label='Title' name='name' placeholder='Movie Title'
+      register={register}
+      validation={{ required: RequiredMessage }}
+      error={errors.name} />
+
+    <Field label='Release date' name='releaseDate' placeholder='2023' type='date'
+      register={register}
+      validation={{ required: RequiredMessage }}
+      error={errors.releaseDate} />
+
+    <Field label='Movie url' name='imageUrl' placeholder='https://'
+      register={register}
+      validation={{
+        required: RequiredMessage,
+        pattern: {
+          value: /^((https?|ftp)\:\/\/((\[?(\d{1,3}\.){3}\d{1,3}\]?)|(([-a-zA-Z0-9]+\.)+[a-zA-Z]{2,4}))(\:\d+)?(\/[-a-zA-Z0-9._?,'+&amp;%$#=~\\]+)*\/?)$/,
+          message: 'Must be a valid uri.'
+        },
+      }}
+      error={errors.imageUrl} />
+
+    <Field label='Rating' name='rating' placeholder='7,8' type='number' step='0.1'
+      register={register}
+      validation={{
+        max: { value: 10, message: 'Max 10' }, min: 0, valueAsNumber: true,
+        required: RequiredMessage
+      }}
+      error={errors.rating} />
+
+    <Field label='Genre' name='genre' type='select'
+      options={genres.map((genre) => ({ text: genre, value: genre }))}
+      validation={{ required: RequiredMessage }}
+      register={register} />
+
+    <Field label='Runtime' name='duration' placeholder='minutes' type='number'
+      register={register}
+      validation={{
+        min: {
+          value: 0,
+          message: '> 0',
+        },
+        valueAsNumber: true,
+        required: RequiredMessage,
+      }}
+      error={errors.duration} />
+
     <div className='control-wide'>
-      <label htmlFor="description">Overview</label>
-      <textarea id='description' name='description' placeholder='Movie description' defaultValue={movie.description} />
+      <Field label='Overview' name='description' placeholder='Movie description'
+        type='textarea'
+        validation={{ required: RequiredMessage }}
+        register={register}
+        error={errors.description} />
     </div>
+
     <div className='buttons'>
       <button type='reset' className='secondary'>Reset</button>
       <button type='submit' className='primary'>Submit</button>

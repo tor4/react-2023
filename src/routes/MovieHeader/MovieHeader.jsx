@@ -17,7 +17,7 @@ export function MovieHeader() {
     <header className='details-container container'>
       <button to="/"
         className='icon search'
-        onClick={() => navigate('/' + search)}
+        onClick={() => navigate(`/${search}`)}
       ></button>
       <MovieDetails {...movie} />
     </header>

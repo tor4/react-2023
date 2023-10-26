@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import './Select.css';
 
-export function Select({ id, name, value, options, onChange }) {
+export function Select({ id, name, value, options, register, validation, onChange }) {
   return (
     <div className='custom-select'>
       <select
         id={id}
-        name={name}
-        value={value}
+        defaultValue={value}
+        {...register(name, validation)}
         onChange={(e) => onChange?.(e.target.value)}
       >
         {
@@ -28,4 +28,5 @@ Select.propTypes = {
 
 Select.defaultProps = {
   options: [],
+  register: () => { }
 };

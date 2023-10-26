@@ -1,0 +1,23 @@
+.Field,
+.control-wide {
+  margin-bottom: 20px;
+  font-size: var(--small-text);
+}
+
+.Field label,
+.control-wide label {
+  text-transform: uppercase;
+  color: var(--secondary-color);
+  font-size: var(--small-text);
+  font-weight: 600;
+  letter-spacing: 0.89px;
+  margin-bottom: 10px;
+}
+
+.Field select {
+  height: 40px;
+}
+
+.Field .error {
+  color: var(--secondary-color)
+}
