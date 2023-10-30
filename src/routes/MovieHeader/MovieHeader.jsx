@@ -1,4 +1,4 @@
-import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLoaderData, useLocation } from '@remix-run/react';
 import { MovieDetails } from '../../Components/MovieDetails/MovieDetails';
 import './MovieHeader.css';
 import { convertToMovieModel, getMovie } from '../../Utils/utils';
@@ -11,14 +11,12 @@ export async function loader({ params }) {
 export function MovieHeader() {
   const movie = useLoaderData();
   const { search } = useLocation();
-  const navigate = useNavigate();
 
   return (
     <header className='details-container container'>
-      <button to="/"
+      <Link to={`/${search}`}
         className='icon search'
-        onClick={() => navigate(`/${search}`)}
-      ></button>
+      ></Link>
       <MovieDetails {...movie} />
     </header>
   )

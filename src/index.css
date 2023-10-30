@@ -63,7 +63,8 @@ textarea {
   --xl-text: 34px;
 }
 
-button {
+button,
+a.btn {
   background: transparent;
   border: 1px solid;
   border-radius: 4px;
@@ -77,6 +78,10 @@ button {
   font-family: Montserrat;
   font-size: var(--medium-text);
   text-transform: uppercase;
+}
+
+a.btn {
+  text-decoration: none;
 }
 
 button.primary {

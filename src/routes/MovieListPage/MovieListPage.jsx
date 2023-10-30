@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Outlet, useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, Outlet, useLoaderData, useNavigate, useSearchParams } from "@remix-run/react";
 
 import { GenreSelect } from '../../Components/GenreSelect/GenreSelect';
 import { SortControl } from '../../Components/SortControl/SortControl';
@@ -43,22 +43,10 @@ export async function loader({ request }) {
 export function MovieListPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieList = useLoaderData();
+  const movieList = useLoaderData() || [];
 
   const [sortCriterion, setSortCriterion] = useState(searchParams.get(SEARCH_PARAMS.SORT_BY) || 'release_date');
-  const [activeGenre, setActiveGenre] = useState(searchParams.get(SEARCH_PARAMS.GENRE) || null);
-
-  const handleGenreSelect = (genre) => {
-    const filter = genre === 'All' ? null : genre;
-    setActiveGenre(filter);
-
-    if (filter === null) {
-      searchParams.delete(SEARCH_PARAMS.GENRE);
-    } else {
-      searchParams.set(SEARCH_PARAMS.GENRE, filter);
-    }
-    setSearchParams(searchParams);
-  }
+  const [activeGenre] = useState(searchParams.get(SEARCH_PARAMS.GENRE) || null);
 
   const handleSortCriterionChange = (sortCriterion) => {
     setSortCriterion(sortCriterion);
@@ -72,22 +60,23 @@ export function MovieListPage() {
       <Outlet />
       <main className='container'>
         <div className='filters'>
-          <GenreSelect genres={genres} selected={activeGenre}
-            onSelect={handleGenreSelect} />
+          <GenreSelect genres={genres} selected={activeGenre} />
           <SortControl selected={sortCriterion} onChange={handleSortCriterionChange} />
         </div>
         <hr />
         <div className='movie-list'>
-          {movieList.map((movie) => (
-            <MovieTile key={movie.id} movie={movie}
-              onSelect={(movie) => {
-                window.scrollTo(0, 0);
-                navigate(`/movies/${movie.id}?${searchParams.toString()}`);
-              }}
-              onEdit={(movie) => {
-                navigate(`/movies/${movie.id}/edit?${searchParams.toString()}`);
-              }}
-            />
+          {movieList?.map((movie) => (
+            <Link key={movie.id} to={`/movies/${movie.id}?${searchParams.toString()}`}>
+              <MovieTile movie={movie}
+                onSelect={(movie) => {
+                  window.scrollTo(0, 0);
+                  // navigate(`/movies/${movie.id}?${searchParams.toString()}`);
+                }}
+                onEdit={(movie) => {
+                  navigate(`/movies/${movie.id}/edit?${searchParams.toString()}`);
+                }}
+              />
+            </Link>
           ))}
         </div>
       </main>
