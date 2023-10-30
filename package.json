@@ -2,11 +2,17 @@
   "name": "react-2023",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@remix-run/express": "^2.1.0",
+    "@remix-run/node": "^2.1.0",
+    "@remix-run/react": "^2.1.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "express": "^4.18.2",
     "focus-trap-react": "^10.2.2",
+    "isbot": "^3.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
@@ -22,7 +28,10 @@
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "remix:build": "remix build",
+    "remix:dev": "remix dev",
+    "remix:start": "remix-serve build/index.js"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +54,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@remix-run/dev": "^2.1.0",
     "@storybook/addon-essentials": "^7.4.5",
     "@storybook/addon-interactions": "^7.4.5",
     "@storybook/addon-links": "^7.4.5",

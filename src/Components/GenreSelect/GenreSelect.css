@@ -11,6 +11,7 @@
 }
 
 .GenreSelect .tab {
+  display: inline-block;
   background-color: transparent;
   border: none;
   border-radius: 0;
