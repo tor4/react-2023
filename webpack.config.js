@@ -7,7 +7,7 @@ module.exports = function (webpackEnv) {
   const isProd = webpackEnv === 'production';
 
   return {
-    entry: './src/index.js',
+    entry: './src/index.tsx',
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'build'),
@@ -23,7 +23,7 @@ module.exports = function (webpackEnv) {
         ENV: webpackEnv,
       }),
       new ProvidePlugin({
-        React: "react" // automatically import react where needed
+        React: 'react' // automatically import react where needed
       }),
       new BundleAnalyzerPlugin({ openAnalyzer: false })
     ],
@@ -42,10 +42,15 @@ module.exports = function (webpackEnv) {
           type: 'asset/resource',
         },
         {
+          test: /\.tsx?$/,
+          use: 'ts-loader',
+          exclude: /node_modules/,
+        },
+        {
           test: /\.(js|mjs|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env', '@babel/preset-react']
             }
@@ -54,7 +59,7 @@ module.exports = function (webpackEnv) {
       ]
     },
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.tsx', '.ts', '.js', '.jsx'],
       alias: {
         '@utils': path.resolve(__dirname, 'src/Utils'),
         '@components': path.resolve(__dirname, 'src/Components'),
@@ -66,6 +71,7 @@ module.exports = function (webpackEnv) {
     devServer: {
       port: 3000,
       historyApiFallback: true,
-    }
+    },
+    devtool: 'inline-source-map',
   }
 }
