@@ -1,4 +1,4 @@
-import { SortControl } from "./SortControl";
+import { SortControl } from './SortControl';
 import '../../index.css';
 
 export default {

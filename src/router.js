@@ -1,15 +1,15 @@
 import {
   createBrowserRouter,
-} from "react-router-dom";
+} from 'react-router-dom';
 import { MovieListPage, loader as moviesLoader } from './routes/MovieListPage/MovieListPage';
-import { SearchHeader } from "./routes/SearchHeader/SearchHeader";
-import { MovieHeader, loader as movieLoader } from "./routes/MovieHeader/MovieHeader";
-import { AddMovieForm, addMovieAction } from "./routes/AddMovieForm/AddMovieForm";
-import { EditMovieForm, action as editMovieAction } from "./routes/EditMovieForm/EditMovieForm";
+import { SearchHeader } from './routes/SearchHeader/SearchHeader';
+import { MovieHeader, loader as movieLoader } from './routes/MovieHeader/MovieHeader';
+import { AddMovieForm, addMovieAction } from './routes/AddMovieForm/AddMovieForm';
+import { EditMovieForm, action as editMovieAction } from './routes/EditMovieForm/EditMovieForm';
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <MovieListPage />,
     loader: moviesLoader,
     children: [{

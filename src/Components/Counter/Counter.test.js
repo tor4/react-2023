@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { Counter } from "./Counter";
+import { fireEvent, render, screen } from '@testing-library/react';
+import { Counter } from './Counter';
 
 describe('Counter component', () => {
     it('should display initial value provided in props', () => {

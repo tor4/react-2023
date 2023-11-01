@@ -66,7 +66,7 @@ export async function addMovie(data) {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -82,7 +82,7 @@ export async function editMovie(data) {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 

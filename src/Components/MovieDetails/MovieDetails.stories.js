@@ -14,7 +14,7 @@ export const Default = {
     genres: ['Drama', 'Fantasy', 'Crime'],
     rating: 9.1,
     duration: 189,
-    description: "A tale set on death row in a Southern jail, where gentle giant John possesses the mysterious power to heal people's ailments.When the lead guard, Paul, recognizes John's gift, he tries to help stave off the condemned man's execution.",
+    description: 'A tale set on death row in a Southern jail, where gentle giant John possesses the mysterious power to heal people\'s ailments.When the lead guard, Paul, recognizes John\'s gift, he tries to help stave off the condemned man\'s execution.',
   },
 };
 
@@ -25,6 +25,6 @@ export const NoImage = {
     genres: ['Drama', 'Fantasy', 'Crime'],
     rating: 9.1,
     duration: 189,
-    description: "A tale set on death row in a Southern jail, where gentle giant John possesses the mysterious power to heal people's ailments.When the lead guard, Paul, recognizes John's gift, he tries to help stave off the condemned man's execution.",
+    description: 'A tale set on death row in a Southern jail, where gentle giant John possesses the mysterious power to heal people\'s ailments.When the lead guard, Paul, recognizes John\'s gift, he tries to help stave off the condemned man\'s execution.',
   },
 };

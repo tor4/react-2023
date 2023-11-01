@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react";
-import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { MovieListPage } from "./MovieListPage"
-import { SearchForm } from "@components";
+import { render, screen } from '@testing-library/react';
+import { RouterProvider, createMemoryRouter } from 'react-router-dom';
+import { MovieListPage } from './MovieListPage'
+import { SearchForm } from '@components';
 
 describe('MovieListPage component', () => {
   let router;
@@ -9,7 +9,7 @@ describe('MovieListPage component', () => {
   beforeEach(() => {
     const routes = [
       {
-        path: "/",
+        path: '/',
         element: <MovieListPage />,
         loader: () => { return [] },
         children: [{

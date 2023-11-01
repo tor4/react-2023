@@ -1,5 +1,5 @@
-import { act, render, screen } from "@testing-library/react";
-import { userEvent } from "@storybook/testing-library";
+import { act, render, screen } from '@testing-library/react';
+import { userEvent } from '@storybook/testing-library';
 import { SortControl } from './SortControl';
 
 describe('SortControl component', () => {

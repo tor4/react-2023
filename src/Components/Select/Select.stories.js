@@ -1,6 +1,6 @@
-import { Select } from "./Select";
+import { Select } from './Select';
 import '../../index.css';
-import { genres } from "utils/constants";
+import { genres } from 'utils/constants';
 
 export default {
   title: 'Base/Select',
