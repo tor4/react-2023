@@ -1,7 +1,7 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { userEvent } from "@storybook/testing-library";
+import { fireEvent, render, screen } from '@testing-library/react';
+import { userEvent } from '@storybook/testing-library';
 import { MovieForm } from './MovieForm';
-import { act } from "react-dom/test-utils";
+import { act } from 'react-dom/test-utils';
 
 
 describe('MovieForm component', () => {

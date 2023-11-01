@@ -1,4 +1,6 @@
-export function formatDuration(minutes) {
+import { Movie } from "./types";
+
+export function formatDuration(minutes: number): string {
   if (!minutes) {
     return;
   }
@@ -12,7 +14,7 @@ export function formatDuration(minutes) {
   return `${hours}h ${mins}min`;
 }
 
-export function convertToMovieModel(movie) {
+export function convertToMovieModel(movie: Movie): any {
   return {
     id: movie.id,
     name: movie.title,
@@ -26,8 +28,8 @@ export function convertToMovieModel(movie) {
   };
 }
 
-export function convertToMovie(data, id) {
-  const object = {
+export function convertToMovie(data: any, id: string | undefined): Movie {
+  const object: Movie = {
     title: data.name,
     overview: data.description,
     poster_path: data.imageUrl,
@@ -43,7 +45,7 @@ export function convertToMovie(data, id) {
   return object;
 }
 
-export async function getMovies(params, options) {
+export async function getMovies(params: object, options: object) {
   let data = Object.fromEntries(Object.entries(params).filter(([_, v]) => v != null));
   const response = await fetch(`http://localhost:4000/movies?${new URLSearchParams(data).toString()}`, options);
   if (response.ok) {
@@ -52,7 +54,7 @@ export async function getMovies(params, options) {
   throw new Error('Not found');
 }
 
-export async function getMovie(id) {
+export async function getMovie(id: string) {
   const response = await fetch(`http://localhost:4000/movies/${id}`);
   if (response.ok) {
     return response.json();
@@ -60,13 +62,13 @@ export async function getMovie(id) {
   throw new Error('Not found');
 }
 
-export async function addMovie(data) {
+export async function addMovie(data: Movie) {
   try {
     const response = await fetch('http://localhost:4000/movies', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
@@ -76,13 +78,13 @@ export async function addMovie(data) {
   }
 }
 
-export async function editMovie(data) {
+export async function editMovie(data: Movie) {
   try {
     const response = await fetch('http://localhost:4000/movies', {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 

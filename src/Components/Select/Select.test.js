@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { userEvent } from "@storybook/testing-library";
+import { render, screen } from '@testing-library/react';
+import { userEvent } from '@storybook/testing-library';
 import { Select } from './Select';
 
 describe('Select component', () => {

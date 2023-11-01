@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
-import { genres } from "../../Utils/constants";
-import './MovieForm.css';
 import { useForm } from 'react-hook-form';
+import { genres } from "@utils/constants";
+import './MovieForm.css';
 import { Field } from '../Field/Field';
 
 const RequiredMessage = 'Cannot be empty.';

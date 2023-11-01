@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent } from '@testing-library/react';
 import { MovieTile } from './MovieTile';
-import { NO_IMAGE_URL } from "utils/constants";
+import { NO_IMAGE_URL } from '@utils/constants';
 
 describe('MoviewTile component', () => {
   const movie = {

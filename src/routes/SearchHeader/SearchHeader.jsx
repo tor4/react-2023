@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useSearchParams } from "react-router-dom";
-import { SearchForm } from '../../Components/SearchForm/SearchForm';
+import { SearchForm } from '@components';
 import './SearchHeader.css';
-import { SEARCH_PARAMS } from "../../Utils/constants";
+import { SEARCH_PARAMS } from "@utils/constants";
 
 export function SearchHeader() {
   const navigate = useNavigate();

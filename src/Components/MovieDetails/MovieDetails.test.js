@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 import { MovieDetails } from './MovieDetails';
-import { NO_IMAGE_URL } from "utils/constants";
+import { NO_IMAGE_URL } from '@utils/constants';
 
 describe('MovieDetails component', () => {
   const movie = {
@@ -10,7 +10,7 @@ describe('MovieDetails component', () => {
     genres: ['Drama', 'Fantasy', 'Crime'],
     rating: 9.1,
     duration: 189,
-    description: "description",
+    description: 'description',
   };
 
   it('should render image', () => {
