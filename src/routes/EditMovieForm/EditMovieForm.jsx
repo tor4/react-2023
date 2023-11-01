@@ -1,7 +1,6 @@
 import { redirect, useLoaderData, useLocation, useNavigate, useSubmit } from "react-router-dom";
-import { Dialog } from "../../Components/Dialog/Dialog";
-import { MovieForm } from "../../Components/MovieForm/MovieForm";
-import { convertToMovie, editMovie } from "../../Utils/utils";
+import { Dialog, MovieForm } from '@components';
+import { convertToMovie, editMovie } from "@utils/utils";
 
 export async function action({ request, params }) {
   const formData = Object.fromEntries(await request.formData());

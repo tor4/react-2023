@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { Outlet, useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
 
-import { GenreSelect } from '../../Components/GenreSelect/GenreSelect';
-import { SortControl } from '../../Components/SortControl/SortControl';
-import { MovieTile } from '../../Components/MovieTile/MovieTile';
-import { SEARCH_PARAMS, genres } from '../../Utils/constants';
-import { convertToMovieModel, getMovies } from '../../Utils/utils';
+import { GenreSelect, SortControl, MovieTile } from '@components';
+import { SEARCH_PARAMS, genres } from '@utils/constants';
+import { convertToMovieModel, getMovies } from '@utils/utils';
 
 import './MovieListPage.css';
 
@@ -68,7 +66,7 @@ export function MovieListPage() {
   }
 
   return (
-    <>
+    <div className="App">
       <Outlet />
       <main className='container'>
         <div className='filters'>
@@ -91,6 +89,6 @@ export function MovieListPage() {
           ))}
         </div>
       </main>
-    </>
+    </div>
   )
 }

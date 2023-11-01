@@ -1,7 +1,7 @@
 import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
-import { MovieDetails } from '../../Components/MovieDetails/MovieDetails';
+import { MovieDetails } from '@components';
 import './MovieHeader.css';
-import { convertToMovieModel, getMovie } from '../../Utils/utils';
+import { convertToMovieModel, getMovie } from '@utils/utils';
 
 export async function loader({ params }) {
   const movie = await getMovie(params.movieId);

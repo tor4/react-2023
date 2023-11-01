@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { MovieDetails } from './MovieDetails';
-import { NO_IMAGE_URL } from "utils/constants";
+import { NO_IMAGE_URL } from "@utils/constants";
 
 describe('MovieDetails component', () => {
   const movie = {

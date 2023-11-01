@@ -1,7 +1,7 @@
-import { render, screen } from "@testing-library/react"
-import { MovieListPage } from "./MovieListPage"
+import { render, screen } from "@testing-library/react";
 import { RouterProvider, createMemoryRouter } from "react-router-dom";
-import { SearchForm } from "../../Components/SearchForm/SearchForm";
+import { MovieListPage } from "./MovieListPage"
+import { SearchForm } from "@components";
 
 describe('MovieListPage component', () => {
   let router;
